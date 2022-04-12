@@ -29,10 +29,19 @@ function App() {
     },
   ];
 
+  const expensesList = expenses.map((expense) => (
+    <ExpenseItem
+      title={expense.title}
+      price={expense.amount}
+      date={expense.date}
+    />
+  ));
+
   return (
-    <div>
+    <div className="expenses">
       <h1>Let's get started!</h1>
-      <ExpenseItem
+      {expensesList}
+      {/* <ExpenseItem
         title={expenses[0].title}
         date={expenses[0].date.toISOString()}
         price={expenses[0].amount}
@@ -51,7 +60,7 @@ function App() {
         title={expenses[3].title}
         date={expenses[3].date.toISOString()}
         price={expenses[3].amount}
-      />
+      /> */}
     </div>
   );
 }
