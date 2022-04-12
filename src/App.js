@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from './Card';
 import ExpenseItem from './components/ExpenseItem';
 
 function App() {
@@ -31,38 +32,17 @@ function App() {
 
   const expensesList = expenses.map((expense) => (
     <ExpenseItem
+      key={expense.id}
       title={expense.title}
       price={expense.amount}
       date={expense.date}
     />
   ));
 
-  return (
-    <div className="expenses">
-      <h1>Let's get started!</h1>
-      {expensesList}
-      {/* <ExpenseItem
-        title={expenses[0].title}
-        date={expenses[0].date.toISOString()}
-        price={expenses[0].amount}
-      />
-      <ExpenseItem
-        title={expenses[1].title}
-        date={expenses[1].date.toISOString()}
-        price={expenses[1].amount}
-      />
-      <ExpenseItem
-        title={expenses[2].title}
-        date={expenses[2].date.toISOString()}
-        price={expenses[2].amount}
-      />
-      <ExpenseItem
-        title={expenses[3].title}
-        date={expenses[3].date.toISOString()}
-        price={expenses[3].amount}
-      /> */}
-    </div>
-  );
+  return <Card className="expenses">{expensesList}</Card>;
+
+  // // with React.createElement
+  // return React.createElement(Card, { className: 'expenses' }, expensesList);
 }
 
 export default App;
