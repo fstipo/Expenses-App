@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from './components/UI/Card';
 import ExpenseItem from './components/Expenses/ExpenseItem';
+import NewExpense from './components/NewExpense/NewExpense';
 
 function App() {
   const expenses = [
@@ -39,7 +40,12 @@ function App() {
     />
   ));
 
-  return <Card className="expenses">{expensesList}</Card>;
+  return (
+    <>
+      <NewExpense />
+      <Card className="expenses">{expensesList}</Card>
+    </>
+  );
 
   // // with React.createElement
   // return React.createElement(Card, { className: 'expenses' }, expensesList);
