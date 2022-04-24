@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from './components/UI/Card';
 import ExpenseItem from './components/Expenses/ExpenseItem';
 import NewExpense from './components/NewExpense/NewExpense';
+import ExpensesFilter from './components/Expenses/ExpensesFilter';
 
 function App() {
+  const [filteredYear, setFilteredYear] = useState('2019');
+  const filterChangeHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
+  };
+
   const expenses = [
     {
       id: 'e1',
@@ -31,6 +37,11 @@ function App() {
     },
   ];
 
+  const addExpenseHandler = (expense) => {
+    console.log('In app.js');
+    console.log(expense);
+  };
+
   const expensesList = expenses.map((expense) => (
     <ExpenseItem
       key={expense.id}
@@ -42,13 +53,17 @@ function App() {
 
   return (
     <>
-      <NewExpense />
-      <Card className="expenses">{expensesList}</Card>
+      <NewExpense onAddExpense={addExpenseHandler} />
+
+      <Card className="expenses">
+        <ExpensesFilter
+          selected={filteredYear}
+          onChangeFilter={filterChangeHandler}
+        />
+        {expensesList}
+      </Card>
     </>
   );
-
-  // // with React.createElement
-  // return React.createElement(Card, { className: 'expenses' }, expensesList);
 }
 
 export default App;
