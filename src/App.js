@@ -33,16 +33,21 @@ const DUMMY_EXPENSES = [
 
 function App() {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
-  const [filteredYear, setFilteredYear] = useState('2019');
+  const [filteredYear, setFilteredYear] = useState('2022');
+
+  const addExpenseHandler = (expense) => {
+    setExpenses((prevExpenses) => [expense, ...prevExpenses]);
+  };
+
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
 
-  const addExpenseHandler = (expense) => {
-    setExpenses((prevExpense) => [expense, ...prevExpense]);
-  };
+  const filterExpenses = expenses.filter(
+    (expense) => expense.date.getFullYear() === +filteredYear
+  );
 
-  const expensesList = expenses.map((expense) => (
+  const expensesList = filterExpenses.map((expense) => (
     <ExpenseItem
       key={expense.id}
       title={expense.title}
