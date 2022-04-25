@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Card from './components/UI/Card';
-import ExpenseItem from './components/Expenses/ExpenseItem';
 import NewExpense from './components/NewExpense/NewExpense';
 import ExpensesFilter from './components/Expenses/ExpensesFilter';
 import ExpensesList from './components/Expenses/ExpensesList';
+import ExpensesChart from './components/Expenses/ExpensesChart';
 
 const DUMMY_EXPENSES = [
   {
@@ -53,6 +53,7 @@ function App() {
       <NewExpense onAddExpense={addExpenseHandler} />
 
       <Card className="expenses">
+        <ExpensesChart expenses={filterExpenses} />
         <ExpensesFilter
           selected={filteredYear}
           onChangeFilter={filterChangeHandler}
